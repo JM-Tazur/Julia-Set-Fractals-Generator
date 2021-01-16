@@ -1,0 +1,6 @@
+C:\Users\Tazur\source\repos\JA\Julia_Sets\Julia_Sets\Debug\Julia_Sets.vcxprojAssemblyReference.cache
+C:\Users\Tazur\source\repos\JA\Julia_Sets\Julia_Sets\Debug\Julia_Sets.Form1.resources
+C:\Users\Tazur\source\repos\JA\Julia_Sets\Julia_Sets\Debug\Julia_Sets.vcxproj.GenerateResource.cache
+C:\Users\Tazur\source\repos\Julia_Sets\Julia_Sets\Julia_Sets\Debug\Julia_Sets.Form1.resources
+C:\Users\Tazur\source\repos\Julia_Sets\Julia_Sets\Julia_Sets\Debug\Julia_Sets.vcxproj.GenerateResource.cache
+C:\Users\Tazur\source\repos\Julia_Sets\Julia_Sets\Julia_Sets\Debug\Julia_Sets.vcxprojAssemblyReference.cache

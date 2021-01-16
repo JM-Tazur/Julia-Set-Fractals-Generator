@@ -1,0 +1,2 @@
+#define ASMLIB_API __declspec(dllexport)
+#define ASMLIB_API __declspec(dllimport)
