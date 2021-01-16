@@ -20,24 +20,15 @@ namespace CppCLRWinformsProjekt {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
-	/// <summary>
-	/// Zusammenfassung für Form1
-	/// </summary>
 	public ref class Form1 : public System::Windows::Forms::Form
 	{
 	public:
 		Form1(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: Konstruktorcode hier hinzufügen.
-			//
 		}
 
 	protected:
-		/// <summary>
-		/// Verwendete Ressourcen bereinigen.
-		/// </summary>
 		~Form1()
 		{
 			if (components)
@@ -71,24 +62,14 @@ namespace CppCLRWinformsProjekt {
 	private: System::Windows::Forms::GroupBox^ Errorgroupbox;
 	private: System::Windows::Forms::Label^ ErrorOutpulabel;
 
-
-
-
 	protected:
 
 	protected:
 
 	private:
-		/// <summary>
-		/// Erforderliche Designervariable.
-		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
-		/// <summary>
-		/// Erforderliche Methode für die Designerunterstützung.
-		/// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
-		/// </summary>
 		void InitializeComponent(void)
 		{
 			this->DLLgroupBox = (gcnew System::Windows::Forms::GroupBox());
@@ -387,11 +368,11 @@ namespace CppCLRWinformsProjekt {
 	{
 		progressBar->Value = 0;
 		ErrorOutpulabel->Text = "---";
-		if (DLL_LIB == NULL)
+		if (DLL_LIB == NULL)	//Sprawdzenie DLL
 		{
 			ErrorOutpulabel->Text = "DLL not found.";
 		}
-		else if (!fn)
+		else if (!fn) //Sprawdzenie funkcji
 		{
 			ErrorOutpulabel->Text = "Failed to call DLL function.";
 		}
