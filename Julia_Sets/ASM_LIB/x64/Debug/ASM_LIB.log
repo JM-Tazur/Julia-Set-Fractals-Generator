@@ -1,6 +1,7 @@
-﻿  pch.cpp
+﻿  Assembling ASMLIB.asm...
+  pch.cpp
   ASM_LIB.cpp
   dllmain.cpp
   Generating Code...
-     Creating library C:\Users\Tazur\source\repos\Julia_Fractals\Julia_Sets\x64\Debug\ASMLIB.lib and object C:\Users\Tazur\source\repos\Julia_Fractals\Julia_Sets\x64\Debug\ASMLIB.exp
-  ASM_LIB.vcxproj -> C:\Users\Tazur\source\repos\Julia_Fractals\Julia_Sets\x64\Debug\ASMLIB.dll
+     Creating library C:\Users\Tazur\Source\Repos\Julia_Fractals\Julia_Sets\x64\Debug\ASMLIB.lib and object C:\Users\Tazur\Source\Repos\Julia_Fractals\Julia_Sets\x64\Debug\ASMLIB.exp
+  ASM_LIB.vcxproj -> C:\Users\Tazur\Source\Repos\Julia_Fractals\Julia_Sets\x64\Debug\ASMLIB.dll

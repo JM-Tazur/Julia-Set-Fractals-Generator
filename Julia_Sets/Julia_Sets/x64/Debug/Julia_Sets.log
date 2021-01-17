@@ -1,3 +1,9 @@
-﻿  CppCLR_WinformsProjekt.cpp
+﻿  pch.cpp
+  AssemblyInfo.cpp
+  bmps.cpp
+  CppCLR_WinformsProjekt.cpp
+  Form1.cpp
+  Generating Code...
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
   AssemblyInfo.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   Julia_Sets.vcxproj -> C:\Users\Tazur\Source\Repos\Julia_Fractals\Julia_Sets\x64\Debug\Julia_Sets.exe

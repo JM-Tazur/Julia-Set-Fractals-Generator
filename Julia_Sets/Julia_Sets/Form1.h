@@ -61,6 +61,7 @@ namespace CppCLRWinformsProjekt {
 	private: System::Windows::Forms::Label^ TIMElabel;
 	private: System::Windows::Forms::GroupBox^ Errorgroupbox;
 	private: System::Windows::Forms::Label^ ErrorOutpulabel;
+	private: System::Windows::Forms::Label^ Creditlabel;
 
 	protected:
 
@@ -92,6 +93,7 @@ namespace CppCLRWinformsProjekt {
 			this->TIMElabel = (gcnew System::Windows::Forms::Label());
 			this->Errorgroupbox = (gcnew System::Windows::Forms::GroupBox());
 			this->ErrorOutpulabel = (gcnew System::Windows::Forms::Label());
+			this->Creditlabel = (gcnew System::Windows::Forms::Label());
 			this->DLLgroupBox->SuspendLayout();
 			this->PreviewgroupBox->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
@@ -158,9 +160,9 @@ namespace CppCLRWinformsProjekt {
 			// 
 			// Generatebutton
 			// 
-			this->Generatebutton->Location = System::Drawing::Point(732, 601);
+			this->Generatebutton->Location = System::Drawing::Point(726, 594);
 			this->Generatebutton->Name = L"Generatebutton";
-			this->Generatebutton->Size = System::Drawing::Size(194, 36);
+			this->Generatebutton->Size = System::Drawing::Size(200, 36);
 			this->Generatebutton->TabIndex = 2;
 			this->Generatebutton->Text = L"Generate";
 			this->Generatebutton->UseVisualStyleBackColor = true;
@@ -189,7 +191,7 @@ namespace CppCLRWinformsProjekt {
 			// ThreadstrackBar
 			// 
 			this->ThreadstrackBar->Location = System::Drawing::Point(25, 16);
-			this->ThreadstrackBar->Maximum = 32;
+			this->ThreadstrackBar->Maximum = 64;
 			this->ThreadstrackBar->Minimum = 1;
 			this->ThreadstrackBar->Name = L"ThreadstrackBar";
 			this->ThreadstrackBar->Size = System::Drawing::Size(163, 45);
@@ -298,7 +300,7 @@ namespace CppCLRWinformsProjekt {
 			this->Errorgroupbox->Size = System::Drawing::Size(200, 40);
 			this->Errorgroupbox->TabIndex = 6;
 			this->Errorgroupbox->TabStop = false;
-			this->Errorgroupbox->Text = L"Errors (if any)";
+			this->Errorgroupbox->Text = L"Error output";
 			// 
 			// ErrorOutpulabel
 			// 
@@ -310,11 +312,21 @@ namespace CppCLRWinformsProjekt {
 			this->ErrorOutpulabel->TabIndex = 0;
 			this->ErrorOutpulabel->Text = L"---";
 			// 
+			// Creditlabel
+			// 
+			this->Creditlabel->AutoSize = true;
+			this->Creditlabel->Location = System::Drawing::Point(822, 633);
+			this->Creditlabel->Name = L"Creditlabel";
+			this->Creditlabel->Size = System::Drawing::Size(104, 13);
+			this->Creditlabel->TabIndex = 7;
+			this->Creditlabel->Text = L"Marceli Janczy 2020";
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(938, 655);
+			this->Controls->Add(this->Creditlabel);
 			this->Controls->Add(this->Errorgroupbox);
 			this->Controls->Add(this->OutputgroupBox);
 			this->Controls->Add(this->ParametersgroupBox);
@@ -323,6 +335,7 @@ namespace CppCLRWinformsProjekt {
 			this->Controls->Add(this->PreviewgroupBox);
 			this->Controls->Add(this->DLLgroupBox);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->MaximizeBox = false;
 			this->Name = L"Form1";
 			this->Text = L"Julia_Set";
 			this->DLLgroupBox->ResumeLayout(false);
@@ -341,6 +354,7 @@ namespace CppCLRWinformsProjekt {
 			this->Errorgroupbox->ResumeLayout(false);
 			this->Errorgroupbox->PerformLayout();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -368,6 +382,7 @@ namespace CppCLRWinformsProjekt {
 	{
 		progressBar->Value = 0;
 		ErrorOutpulabel->Text = "---";
+
 		if (DLL_LIB == NULL)	//Sprawdzenie DLL
 		{
 			ErrorOutpulabel->Text = "DLL not found.";
@@ -382,11 +397,13 @@ namespace CppCLRWinformsProjekt {
 			c.imag((factor)+(double)IMnumericUpDown->Value);
 
 
-
 			auto start = std::chrono::steady_clock::now();	//start pomiaru czasu
-			fractal.draw(fn, c, progressBar);							//funkcja rysujaca fraktal, przyjmuje wskaznik na odpowiednia funkcje asm/cpp w zaleznosci od DLL
+
+			fractal.draw(fn, c, progressBar);			//funkcja rysujaca fraktal, przyjmuje wskaznik na odpowiednia funkcje asm/cpp w zaleznosci od DLL
+
 			auto end = std::chrono::steady_clock::now();	//koniec pomiaru czasu
 			
+
 			TimeExecutionlabel->Text = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count().ToString() + " ms";	//Wyswietlenie czasu wykonania
 
 			pictureBox1->ImageLocation = "./julia.bmp";	//zaladowanie podgladu
