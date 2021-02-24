@@ -1,7 +1,6 @@
 #pragma once
 #define WIN32_LEAN_AND_MEAN
 #include <chrono>		//Pomiar czasu wykonania
-#include <omp.h>		//Wielowatkowosc
 #include "Bmps.h"		//Funkcje obslugi Bitmap
 
 julia fractal;							//Klasa fraktali
@@ -191,7 +190,7 @@ namespace CppCLRWinformsProjekt {
 			// ThreadstrackBar
 			// 
 			this->ThreadstrackBar->Location = System::Drawing::Point(25, 16);
-			this->ThreadstrackBar->Maximum = 64;
+			this->ThreadstrackBar->Maximum = omp_get_max_threads();
 			this->ThreadstrackBar->Minimum = 1;
 			this->ThreadstrackBar->Name = L"ThreadstrackBar";
 			this->ThreadstrackBar->Size = System::Drawing::Size(163, 45);
@@ -393,17 +392,13 @@ namespace CppCLRWinformsProjekt {
 		}
 		else
 		{
-			c.real((factor)+(double)REnumericUpDown->Value);
-			c.imag((factor)+(double)IMnumericUpDown->Value);
-
+			c.real((factor)+(double)REnumericUpDown->Value);	//ustawienie czesci RE
+			c.imag((factor)+(double)IMnumericUpDown->Value);	//ustawienie czesci IM
 
 			auto start = std::chrono::steady_clock::now();	//start pomiaru czasu
-
-			fractal.draw(fn, c, progressBar);			//funkcja rysujaca fraktal, przyjmuje wskaznik na odpowiednia funkcje asm/cpp w zaleznosci od DLL
-
+			fractal.draw(fn, c, progressBar, (int)ThreadstrackBar->Value);	//funkcja rysujaca fraktal (wskaznik funkcji, parametry C, progressbar, ilosc watkow)
 			auto end = std::chrono::steady_clock::now();	//koniec pomiaru czasu
 			
-
 			TimeExecutionlabel->Text = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count().ToString() + " ms";	//Wyswietlenie czasu wykonania
 
 			pictureBox1->ImageLocation = "./julia.bmp";	//zaladowanie podgladu

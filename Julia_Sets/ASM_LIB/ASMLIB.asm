@@ -56,7 +56,6 @@ INSETproc1 proc
 		movsd xmm7, xmm1			;xmm6 <- z.img
 		mulsd xmm7, xmm1			;xmm1 = z.img*z.img
 		addsd xmm6, xmm7			;xmm6 = (z.real+z.real) + (z.img+z.img)
-
 		movsd dist, xmm6 
 		
 		;------------------------------------
@@ -83,7 +82,7 @@ INSETproc1 proc
 
 	afterBreakingLoop:
 		mov rax, 0
-		mov eax, result
+		mov eax, result				;funkcja zwraca wartosc int
 		ret
 
 INSETproc1 endp

@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "Bmps.h"
+#include <thread>
+#include <omp.h>
 
 myBitmap::myBitmap() : pen(NULL), brush(NULL), clr(0), wid(1) {}
 
@@ -121,26 +123,27 @@ void myBitmap::createPen() {
 
 //======== JULIA CLASS ========
 
-void julia::draw(fnptr fn, std::complex<long double> k, System::Windows::Forms::ProgressBar^ bar)
+void julia::draw(fnptr fn, std::complex<long double> k, System::Windows::Forms::ProgressBar ^ bar, int num_threads)
 {
     bmp.create(BMP_SIZE, BMP_SIZE);
     DWORD* bits = bmp.bits();
     int res, pos;
     std::complex<long double> c, factor(FCT / BMP_SIZE, FCT / BMP_SIZE);
 
+    omp_set_num_threads(num_threads);           //ustawienie ilosci watkow
+#pragma omp parallel for collapse(2)            //obszar wielowatkowy dla zagniezdzonej petli for (2)
     for (int y = 0; y < BMP_SIZE; y++)
     {
         pos = y * BMP_SIZE;
-
         c.imag((factor.imag() * y) + -hFCT);
 
         for (int x = 0; x < BMP_SIZE; x++)
         {
             c.real(factor.real() * x + -hFCT);
 
-            res = fn(c, k);
-            
-            if (res)
+            res = fn(c, k);                     //wywolanie funckji z DLL
+
+            if (res)                            //Jezeli res != 0, ustaw odpowiedni kolor
             {
                 int n_res = res % 255;
                 if (res < (ITERATIONS >> 1)) res = RGB(n_res << 2, n_res << 3, n_res << 4);
@@ -150,5 +153,6 @@ void julia::draw(fnptr fn, std::complex<long double> k, System::Windows::Forms::
         }
         bar->PerformStep();
     }
-    bmp.saveBitmap("./julia.bmp");
+#pragma omp barrier                             //koniec watkow
+bmp.saveBitmap("./julia.bmp");
 }

@@ -1,14 +1,16 @@
 #pragma once
-#include <windows.h>
+#include <Windows.h>
 #include <string>
 #include <complex>
+#include <omp.h>
 
-const int BMP_SIZE = 600, ITERATIONS = 512;
-const long double FCT = 2.85, hFCT = FCT / 2.0;
+const int BMP_SIZE = 600, ITERATIONS = 512;     //rozmiar bitmapy, ilosc iteracji
+const long double FCT = 2.85, hFCT = FCT / 2.0; //stale rozmiarowe
 
 typedef int (*fnptr)(std::complex <long double> z, std::complex <long double> c);
 
-class myBitmap {
+class myBitmap
+{
 private:
     void createPen();
     HBITMAP bmp;
@@ -36,10 +38,11 @@ public:
 };
 
 
-class julia {
+class julia
+{
 private:
     myBitmap bmp;
 
 public:
-    void draw(fnptr fn, std::complex<long double> k, System::Windows::Forms::ProgressBar ^bar);
+    void draw(fnptr fn, std::complex<long double> k, System::Windows::Forms::ProgressBar ^bar, int num_threads);
 };
