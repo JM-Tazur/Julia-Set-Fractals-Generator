@@ -2,6 +2,8 @@
 
 A window application written in C++ that allows generating fractals from the Julia set and saving them as a bitmap. The program uses two DLLs written in two different languages (C++ and ASM) to compare the execution times of the same task depending on the language.
 
+Application is designed to run on multiple threads (Execution time may differ). Number of these can be assigned via slider.
+
 Requires Microsoft Macro Assembler in order to work (https://www.masm32.com/)
 
 ![julia1](https://user-images.githubusercontent.com/43813886/225713351-e9d04f1f-1cc3-43e6-a3a4-0290c109eddb.png)
